@@ -1,0 +1,43 @@
+<h1 id="tableLabel">Cars</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!cars"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+Make:
+<select (change)="onSelect($event)">
+  <option value=""></option>
+  <option value="Toyota">Toyota</option>
+  <option value="Honda">Honda</option>
+  <option value="Ford">Ford</option>
+  <option value="BMW">BMW</option>
+  <option value="Nissan">Nissan</option>
+</select>
+
+<table *ngIf="cars">
+  <thead>
+    <tr>
+      <th>Expiry Date</th>
+      <th>Make</th>
+      <th>Registration</th>
+      <th>Expiry Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.expiryDate }}</td>
+      <td>{{ car.make }}</td>
+      <td>{{ car.registration }}</td>
+      <td>{{ car.expiryStatus }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Navigation links -->
+<nav>
+  <a routerLink="/">Cars</a> |
+  <a routerLink="/registration">Live Registration</a>
+</nav>
+
+<!-- Routed components will render here -->
+<router-outlet></router-outlet>

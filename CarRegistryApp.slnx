@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="carregistryapp.client/carregistryapp.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="CarRegistryApp.Server/CarRegistryApp.Server.csproj" />
+</Solution>
