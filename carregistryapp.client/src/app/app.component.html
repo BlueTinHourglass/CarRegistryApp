@@ -4,32 +4,54 @@
 
 <p *ngIf="cars.length === 0"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
 
-Make:
-<select (change)="onSelect($event)">
-  <option value=""></option>
-  <option value="Toyota">Toyota</option>
-  <option value="Honda">Honda</option>
-  <option value="Ford">Ford</option>
-  <option value="BMW">BMW</option>
-  <option value="Nissan">Nissan</option>
-</select>
+<div style="margin:auto">
+  Make:
+  <select (change)="onSelect($event)">
+    <option value=""></option>
+    <option value="Toyota">Toyota</option>
+    <option value="Honda">Honda</option>
+    <option value="Ford">Ford</option>
+    <option value="BMW">BMW</option>
+    <option value="Nissan">Nissan</option>
+  </select>
+</div>
 
-<table *ngIf="cars.length > 0">
+<table *ngIf="cars.length > 0" role="grid" aria-labelledby="tableLabel">
   <thead>
     <tr>
+      <th>Select</th>
       <th>Expiry Date</th>
       <th>Make</th>
       <th>Registration</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of cars">
+    <tr *ngFor="let car of cars; let i = index"
+        (click)="selectCar(car)"
+        [class.selected]="isSelected(car)"
+        tabindex="0"
+        role="row"
+        [attr.aria-selected]="isSelected(car)">
+      <td>
+        <input type="radio"
+               name="selectedCar"
+               [attr.id]="'car-radio-' + i"
+               [checked]="isSelected(car)"
+               (change)="selectCar(car)"
+               (click)="$event.stopPropagation()"
+               [attr.aria-label]="'Select car ' + car.registration" />
+      </td>
       <td>{{ car.expiryDate }}</td>
       <td>{{ car.make }}</td>
       <td>{{ car.registration }}</td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="selectedCar" class="selected-details" style="margin-top:1rem">
+  <strong>Selected:</strong>
+  {{ selectedCar.make }} — {{ selectedCar.registration }} (Expiry: {{ selectedCar.expiryDate }})
+</div>
 
 <!-- Navigation links -->
 <nav>

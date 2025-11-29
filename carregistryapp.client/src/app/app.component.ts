@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { retryWhen, delay, tap, take, throwError } from 'rxjs';
+import { retryWhen, delay, tap, take } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 export interface Car {
   expiryDate: string;
@@ -12,10 +13,11 @@ export interface Car {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   public cars: Car[] = [];
+  public selectedCar: Car | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -35,18 +37,33 @@ export class AppComponent implements OnInit {
       .pipe(
         retryWhen(errors =>
           errors.pipe(
-            // exponential backoff delay
             tap((err) => console.warn('GET /car failed, will retry', err)),
-            // use increasing delay: baseDelayMs * attempt
             delay(baseDelayMs),
             take(maxRetries)
           )
         )
       )
       .subscribe(
-        (result) => this.cars = result,
+        (result) => {
+          this.cars = result;
+          // preserve previous selection if still present (by registration)
+          if (this.selectedCar) {
+            const keep = this.cars.find(c => c.registration === this.selectedCar!.registration) ?? null;
+            this.selectedCar = keep;
+          }
+        },
         (error) => console.error('Failed to load cars after retries', error)
       );
+  }
+
+  // select a car from the table
+  selectCar(car: Car) {
+    console.log('Selected:', car);
+    this.selectedCar = car;
+  }
+
+  isSelected(car: Car): boolean {
+    return this.selectedCar?.registration === car.registration;
   }
 
   title = 'angularappcars.client';
