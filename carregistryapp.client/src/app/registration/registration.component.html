@@ -2,20 +2,12 @@
 <p>Live updates of expired registrations.</p>
 
 <table *ngIf="cars.length > 0">
-  <thead>
-    <tr>
-      <th>Expiry Date</th>
-      <th>Make</th>
-      <th>Registration</th>
-      <th>Expired?</th>
-    </tr>
-  </thead>
   <tbody>
     <tr *ngFor="let car of cars" [ngClass]="{'expired': car.expired}">
       <td>{{ car.expiryDate }}</td>
       <td>{{ car.make }}</td>
       <td>{{ car.registration }}</td>
-      <td>{{ car.expired ? 'Yes' : 'No' }}</td>
+      <td>{{ car.expired ? 'Expired' : 'Valid' }}</td>
     </tr>
   </tbody>
 </table>

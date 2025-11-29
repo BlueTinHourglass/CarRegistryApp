@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getCars('');
+    setTimeout(() => this.getCars(''), 5000); // delay 5.0s so the frontend doesn't make a GET request before the backend is fully ready
   }
 
   onSelect(event: Event) {
