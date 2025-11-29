@@ -1,6 +1,9 @@
 using CarRegistryApp.Server.Data;
 using CarRegistryApp.Server.Hubs;
 using CarRegistryApp.Server.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +16,12 @@ builder.Services.AddSignalR();
 // Allow Angular dev server to connect
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("DevCors", policy =>
     {
-        policy
-            .WithOrigins("https://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+        policy.WithOrigins("https://localhost:50099") // your SPA origin
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -31,11 +33,12 @@ app.UseDefaultFiles();
 app.MapStaticAssets();
 
 app.UseRouting();
-app.UseCors();
+app.UseCors("DevCors");
 
 app.UseAuthorization();
 
-app.MapHub<CarHub>("/carHub");
+// IMPORTANT: UseCors must run before MapHub so negotiation responses include CORS headers
+app.MapHub<CarRegistryApp.Server.Hubs.CarHub>("/carHub");
 
 if (app.Environment.IsDevelopment())
 {

@@ -18,8 +18,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   private hubConnection!: signalR.HubConnection;
 
   ngOnInit() {
+    // Use the backend app URL (match the port shown by Kestrel, e.g. 7079)
+    const backendUrl = 'https://localhost:7079/carHub';
+
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('/carHub', {
+      .withUrl(backendUrl, {
         transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling
       })
       .withAutomaticReconnect()
