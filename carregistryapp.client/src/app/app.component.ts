@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { retryWhen, delay, tap, take } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   public cars: Car[] = [];
   public selectedCar: Car | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.getCarsWithRetry('');
@@ -60,6 +61,11 @@ export class AppComponent implements OnInit {
   selectCar(car: Car) {
     console.log('Selected:', car);
     this.selectedCar = car;
+
+    // navigate to the registration view when a car is selected
+    this.router.navigate(['/registration']).catch(err => {
+      console.warn('Navigation to /registration failed', err);
+    });
   }
 
   isSelected(car: Car): boolean {
