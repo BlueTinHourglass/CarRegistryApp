@@ -2,14 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { retryWhen, delay, tap, take } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-
-export interface Car {
-  expiryDate: string;
-  make: string;
-  registration: string;
-  expiryStatus: string;
-}
+import { SelectedCarService } from './services/selected-car.service';
+import { Car } from './models/car.model';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +14,7 @@ export class AppComponent implements OnInit {
   public cars: Car[] = [];
   public selectedCar: Car | null = null;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private selectedSvc: SelectedCarService) { }
 
   ngOnInit() {
     this.getCarsWithRetry('');
@@ -44,25 +38,26 @@ export class AppComponent implements OnInit {
           )
         )
       )
-      .subscribe(
-        (result) => {
+      .subscribe({
+        next: (result) => {
           this.cars = result;
-          // preserve previous selection if still present (by registration)
           if (this.selectedCar) {
             const keep = this.cars.find(c => c.registration === this.selectedCar!.registration) ?? null;
             this.selectedCar = keep;
+            // update shared selection in case kept object identity changed
+            this.selectedSvc.setSelected(this.selectedCar);
           }
         },
-        (error) => console.error('Failed to load cars after retries', error)
-      );
+        error: (error) => console.error('Failed to load cars after retries', error)
+      });
   }
 
   // select a car from the table
   selectCar(car: Car) {
     console.log('Selected:', car);
     this.selectedCar = car;
-
-    // navigate to the registration view when a car is selected
+    this.selectedSvc.setSelected(car);
+    // navigate to registration route
     this.router.navigate(['/registration']).catch(err => {
       console.warn('Navigation to /registration failed', err);
     });

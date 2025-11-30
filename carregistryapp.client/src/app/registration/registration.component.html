@@ -1,15 +1,26 @@
 <h1>Car Registrations</h1>
-<p>Live updates of expired registrations.</p>
+<p>Live updates of expired registrations for the selected car.</p>
 
-<table style="margin:auto" *ngIf="cars.length > 0">
+<div *ngIf="!displayedCar">
+  <p *ngIf="cars.length === 0"><em>Waiting for data...</em></p>
+  <p *ngIf="cars.length > 0"><em>No car selected. Select a car in the Cars table to see live registration status here.</em></p>
+</div>
+
+<table *ngIf="displayedCar" style="margin:auto" role="grid" aria-label="Selected car registration">
+  <thead>
+    <tr>
+      <th>Expiry Date</th>
+      <th>Make</th>
+      <th>Registration</th>
+      <th>Status</th>
+    </tr>
+  </thead>
   <tbody>
-    <tr *ngFor="let car of cars" [ngClass]="{'expired': car.expired}">
-      <td>{{ car.expiryDate }}</td>
-      <td>{{ car.make }}</td>
-      <td>{{ car.registration }}</td>
-      <td>{{ car.expired ? 'Expired' : 'Valid' }}</td>
+    <tr [ngClass]="{'expired': displayedCar?.expired}">
+      <td>{{ displayedCar?.expiryDate }}</td>
+      <td>{{ displayedCar?.make }}</td>
+      <td>{{ displayedCar?.registration }}</td>
+      <td>{{ displayedCar?.expired ? 'Expired' : 'Valid' }}</td>
     </tr>
   </tbody>
 </table>
-
-<p *ngIf="cars.length === 0">Waiting for data...</p>
