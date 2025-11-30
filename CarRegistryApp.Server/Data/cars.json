@@ -2,120 +2,160 @@
   {
     "ExpiryDate": "2026-03-12",
     "Make": "Toyota",
+    "Model": "Camry",
+    "Colour": "Silver",
     "Expired": false,
     "Registration": "TOY1001"
   },
   {
     "ExpiryDate": "2024-11-01",
     "Make": "Toyota",
+    "Model": "Corolla",
+    "Colour": "Blue",
     "Expired": true,
     "Registration": "TOY1002"
   },
   {
     "ExpiryDate": "2025-08-19",
     "Make": "Toyota",
+    "Model": "Prius",
+    "Colour": "White",
     "Expired": true,
     "Registration": "TOY1003"
   },
   {
     "ExpiryDate": "2024-04-22",
     "Make": "Toyota",
+    "Model": "RAV4",
+    "Colour": "Black",
     "Expired": true,
     "Registration": "TOY1004"
   },
   {
     "ExpiryDate": "2026-01-15",
     "Make": "Honda",
+    "Model": "Civic",
+    "Colour": "Red",
     "Expired": false,
     "Registration": "HON2005"
   },
   {
     "ExpiryDate": "2025-10-30",
     "Make": "Honda",
+    "Model": "Accord",
+    "Colour": "Gray",
     "Expired": true,
     "Registration": "HON2006"
   },
   {
     "ExpiryDate": "2024-09-05",
     "Make": "Honda",
+    "Model": "Fit",
+    "Colour": "Green",
     "Expired": true,
     "Registration": "HON2007"
   },
   {
     "ExpiryDate": "2026-07-18",
     "Make": "Honda",
+    "Model": "CR-V",
+    "Colour": "White",
     "Expired": false,
     "Registration": "HON2008"
   },
   {
     "ExpiryDate": "2024-12-28",
     "Make": "Ford",
+    "Model": "Focus",
+    "Colour": "Blue",
     "Expired": true,
     "Registration": "FOR2009"
   },
   {
     "ExpiryDate": "2025-06-11",
     "Make": "Ford",
+    "Model": "Fiesta",
+    "Colour": "Silver",
     "Expired": true,
     "Registration": "FOR2010"
   },
   {
     "ExpiryDate": "2026-02-09",
     "Make": "Ford",
+    "Model": "Mustang",
+    "Colour": "Yellow",
     "Expired": false,
     "Registration": "FOR2011"
   },
   {
     "ExpiryDate": "2024-08-17",
     "Make": "Ford",
+    "Model": "Explorer",
+    "Colour": "Black",
     "Expired": true,
     "Registration": "FOR2012"
   },
   {
     "ExpiryDate": "2025-09-23",
     "Make": "BMW",
+    "Model": "3 Series",
+    "Colour": "Black",
     "Expired": true,
     "Registration": "BMW3013"
   },
   {
     "ExpiryDate": "2025-03-14",
     "Make": "BMW",
+    "Model": "5 Series",
+    "Colour": "Silver",
     "Expired": true,
     "Registration": "BMW3014"
   },
   {
     "ExpiryDate": "2024-10-07",
     "Make": "BMW",
+    "Model": "X3",
+    "Colour": "Blue",
     "Expired": true,
     "Registration": "BMW3015"
   },
   {
     "ExpiryDate": "2026-05-21",
     "Make": "BMW",
+    "Model": "X5",
+    "Colour": "White",
     "Expired": false,
     "Registration": "BMW3016"
   },
   {
     "ExpiryDate": "2025-12-02",
     "Make": "Nissan",
+    "Model": "Altima",
+    "Colour": "Gray",
     "Expired": false,
     "Registration": "NIS4017"
   },
   {
     "ExpiryDate": "2024-07-29",
     "Make": "Nissan",
+    "Model": "Sentra",
+    "Colour": "Red",
     "Expired": true,
     "Registration": "NIS4018"
   },
   {
     "ExpiryDate": "2026-04-03",
     "Make": "Nissan",
+    "Model": "Rogue",
+    "Colour": "Black",
     "Expired": false,
     "Registration": "NIS4019"
   },
   {
     "ExpiryDate": "2024-05-12",
     "Make": "Nissan",
+    "Model": "Leaf",
+    "Colour": "Green",
     "Expired": true,
     "Registration": "NIS4020"
   }

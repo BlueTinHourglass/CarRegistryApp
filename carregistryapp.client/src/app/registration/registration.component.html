@@ -1,4 +1,4 @@
-<h1>Car Registrations</h1>
+<h1>Car Registration</h1>
 <p>Live updates of expired registrations for the selected car.</p>
 
 <div *ngIf="!displayedCar">
@@ -10,7 +10,6 @@
   <thead>
     <tr>
       <th>Expiry Date</th>
-      <th>Make</th>
       <th>Registration</th>
       <th>Status</th>
     </tr>
@@ -18,9 +17,8 @@
   <tbody>
     <tr [ngClass]="{'expired': displayedCar?.expired}">
       <td>{{ displayedCar?.expiryDate }}</td>
-      <td>{{ displayedCar?.make }}</td>
       <td>{{ displayedCar?.registration }}</td>
-      <td>{{ displayedCar?.expired ? 'Expired' : 'Valid' }}</td>
+      <td><strong>{{ displayedCar?.expired ? 'Expired' : 'Valid' }}</strong></td>
     </tr>
   </tbody>
 </table>

@@ -20,8 +20,9 @@
   <thead>
     <tr>
       <th></th>
-      <th>Expiry Date</th>
+      <th>Model</th>
       <th>Make</th>
+      <th>Colour</th>
       <th>Registration</th>
     </tr>
   </thead>
@@ -41,8 +42,9 @@
                (click)="$event.stopPropagation()"
                [attr.aria-label]="'Select car ' + car.registration" />
       </td>
-      <td>{{ car.expiryDate }}</td>
+      <td>{{ car.model }}</td>
       <td>{{ car.make }}</td>
+      <td>{{ car.colour }}</td>
       <td>{{ car.registration }}</td>
     </tr>
   </tbody>
