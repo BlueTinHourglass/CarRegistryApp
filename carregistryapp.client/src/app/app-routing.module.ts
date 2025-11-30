@@ -4,7 +4,6 @@ import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
-  // add other feature routes here; do NOT map '' to AppComponent (AppComponent is bootstrapped)
 ];
 
 @NgModule({

@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       this.displayedCar = sel ? this.findLatestFor(sel.registration) : null;
     });
 
-    // start SignalR (kept minimal; you can reuse earlier robust logic)
+    // start SignalR
     const hubUrl = location.hostname === 'localhost' ? 'https://localhost:7079/carHub' : '/carHub';
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(hubUrl, { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
