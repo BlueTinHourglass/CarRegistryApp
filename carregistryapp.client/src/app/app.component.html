@@ -19,7 +19,7 @@
 <table *ngIf="cars.length > 0" role="grid" aria-labelledby="tableLabel">
   <thead>
     <tr>
-      <th>Select</th>
+      <th></th>
       <th>Expiry Date</th>
       <th>Make</th>
       <th>Registration</th>
@@ -48,10 +48,7 @@
   </tbody>
 </table>
 
-<div *ngIf="selectedCar" class="selected-details" style="margin-top:1rem">
-  <strong>Selected:</strong>
-  {{ selectedCar.make }} — {{ selectedCar.registration }} (Expiry: {{ selectedCar.expiryDate }})
-</div>
+
 
 <!-- Routed components will render here -->
 <router-outlet></router-outlet>
